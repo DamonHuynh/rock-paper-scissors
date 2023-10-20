@@ -61,4 +61,12 @@ function determineWinner (playerSelection, computerSelection)
             return "You lose, paper loses to scissors"
         }
     }
+
+    function game ()
+    {
+        const playerSelection = prompt("What do you choose? (rock, paper, or scissors");
+        const computerSelection = getComputerChoice();
+        determineWinner(playerSelection, computerSelection);
+
+    }
 }
