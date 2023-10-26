@@ -18,8 +18,6 @@ function getComputerChoice()
 
 function playRound(playerSelection, computerSelection)
 {
-    playerSelection.toLowerCase();
-    computerSelection.toLowerCase();
 
     if (playerSelection === computerSelection)
     {
