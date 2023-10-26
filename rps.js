@@ -16,7 +16,7 @@ function getComputerChoice()
     }
 }
 
-function determineWinner (playerSelection, computerSelection)
+function playRound(playerSelection, computerSelection)
 {
     playerSelection.toLowerCase();
     computerSelection.toLowerCase();
@@ -74,27 +74,63 @@ function determineWinner (playerSelection, computerSelection)
 
 let winCount = 0;
 let compWinCount = 0;
+const btnCont = document.querySelector(".btnCont");
+const choice = document.querySelectorAll(".choice");
+const endMessage = document.querySelector(".end");
+
+const playAgain = document.createElement("button");
+playAgain.textContent = "Play Again?";
+
 function game()
 {
-    const playerSelection = prompt("What do you choose? (rock, paper, or scissors");
-    const computerSelection = getComputerChoice();
-    let playerWins = determineWinner(playerSelection, computerSelection);
+    let playerWins;
+    choice.forEach((button) => {
+        button.addEventListener("click", () => {
+            const computerSelection = getComputerChoice();
+            playerWins = playRound(button.id, computerSelection);
+            keepScore(playerWins)
+            if (winCount == 5 || compWinCount == 5){
+                endGame();
+            }
+ 
+        });
+    });
+    
 
+}
+function keepScore(playerWins){
     if (playerWins)
-    {
-        winCount++;
-    }
-    else if (playerWins != null)
-    {
-        compWinCount++;
-    }
-    console.log("Player has: " + winCount);
-    console.log("Computer has: " + compWinCount);
+            {
+                winCount++;
+            }
+            else if (playerWins != null)
+            {
+                compWinCount++;
+            }
+            console.log("Player has: " + winCount);
+            console.log("Computer has: " + compWinCount);
+
 }
 
-while (winCount < 3 && compWinCount < 3)
-{
-    game();
+function endGame(){
+    choice.forEach((button) => {
+        btnCont.removeChild(button);
+    });
+    if (winCount > compWinCount){
+        console.log("YOU WIN!!!!");
+    }
+    else {
+        console.log("YOU LOSE!!!!");
+    }
+    startNewGame();
+    
+    }
+
+function startNewGame(){
+    endMessage.appendChild(playAgain);
 }
+game();
+
+
 
 
