@@ -75,16 +75,25 @@ function playRound(playerSelection, computerSelection)
 let winCount = 0;
 let compWinCount = 0;
 const btnCont = document.querySelector(".btnCont");
-const choice = document.querySelectorAll(".choice");
+const choices = document.querySelectorAll(".choice");
 const endMessage = document.querySelector(".end");
 
 const playAgain = document.createElement("button");
+playAgain.addEventListener("click", () => {
+    winCount = 0;
+    compWinCount = 0;
+    choices.forEach((button) => {
+        btnCont.appendChild(button);
+    });
+    playAgain.remove();
+});
+
 playAgain.textContent = "Play Again?";
 
 function game()
 {
     let playerWins;
-    choice.forEach((button) => {
+    choices.forEach((button) => {
         button.addEventListener("click", () => {
             const computerSelection = getComputerChoice();
             playerWins = playRound(button.id, computerSelection);
@@ -113,7 +122,7 @@ function keepScore(playerWins){
 }
 
 function endGame(){
-    choice.forEach((button) => {
+    choices.forEach((button) => {
         btnCont.removeChild(button);
     });
     if (winCount > compWinCount){
