@@ -73,14 +73,23 @@ function playRound(playerSelection, computerSelection)
 let winCount = 0;
 let compWinCount = 0;
 
+const container = document.querySelector(".container");
+
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
+const result = document.createElement("p");
+const resultGif = document.createElement("img");
+resultGif.classList.add("gif")
+
 
 const btnCont = document.querySelector(".btnCont");
 const choices = document.querySelectorAll(".choice");
 const endMessage = document.querySelector(".end");
 
+
 const playAgain = document.createElement("button");
+playAgain.textContent = "Play Again?";
+
 playAgain.addEventListener("click", () => {
     winCount = 0;
     compWinCount = 0;
@@ -89,9 +98,11 @@ playAgain.addEventListener("click", () => {
         btnCont.appendChild(button);
     });
     playAgain.remove();
+    result.remove();
+    resultGif.remove();
 });
 
-playAgain.textContent = "Play Again?";
+
 
 function game()
 {
@@ -132,19 +143,30 @@ function endGame(){
         btnCont.removeChild(button);
     });
     if (winCount > compWinCount){
-        console.log("YOU WIN!!!!");
+        result.textContent = "YOU WIN!!";
+        container.appendChild(result);
+
+        resultGif.src = "img/winner.gif";
+        container.append(resultGif);
     }
     else {
-        console.log("YOU LOSE!!!!");
+        result.textContent = "YOU SUCK!!";
+        container.appendChild(result);
+
+        resultGif.src = "img/loser.gif";
+        container.append(resultGif);
+
     }
-    startNewGame();
+    endMessage.appendChild(playAgain);
     
     }
 
-function startNewGame(){
-    endMessage.appendChild(playAgain);
-}
+
 game();
+
+
+
+
 
 
 

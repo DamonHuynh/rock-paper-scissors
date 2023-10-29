@@ -1,8 +1,31 @@
 body{
-    background-color: #14213D;
+    background-color: #FCA311;
 }
 
 .btnCont{
     display: flex;
     justify-content: space-evenly;
 }
+
+.container{
+   display: flex;
+   flex-direction: column;
+   
+}
+
+#score{
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.gif{
+    height: 300px;
+    width: 300px;
+}
+
+img{
+    height: 200px;
+    width: 200px;
+}
+
