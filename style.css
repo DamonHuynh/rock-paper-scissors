@@ -1,0 +1,12 @@
+body{
+    background-color: #14213D;
+}
+
+.btnCont{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container{
+    
+}
