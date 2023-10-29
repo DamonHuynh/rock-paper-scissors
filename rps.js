@@ -1,38 +1,39 @@
-const playerChoice = document.createElement("img");
-const computerChoice = document.createElement("img");
 
 function getComputerChoice()
 {
     let rand = Math.floor(Math.random() * 3) + 1;
     if (rand === 1)
     {
-        return "rock";
+        return "Rock";
     }
     if (rand === 2)
     {
-        return "paper";
+        return "Paper";
     }
     if (rand === 3)
     {
-        return "scissors";
+        return "Scissors";
     }
 }
 
 function playRound(playerSelection, computerSelection)
 {
+   playerChoice.textContent = playerSelection;
+   computerChoice.textContent = computerSelection;
+   
     if (playerSelection === computerSelection)
     {
-        console.log("It's a tie!");
+        gameResult.textContent = "It's a tie!";
         return null;
     }
 
-    if (playerSelection == "rock")
+    if (playerSelection == "Rock")
     {
-        playerChoice.src = "img/rock.png";
-
-        if (computerSelection == "scissors")
+        
+        if (computerSelection == "Scissors")
         {
-             return true;
+
+            return true;
         }
         //if computer choice is not scissors, it must be paper
         else
@@ -41,11 +42,9 @@ function playRound(playerSelection, computerSelection)
         }
     }
 
-    else if (playerSelection == "scissors")
+    else if (playerSelection == "Scissors")
     {
-        playerChoice.src = "img/scissors.png";
-
-        if (computerSelection == "paper")
+        if (computerSelection == "Raper")
         {
             return true;
         }
@@ -55,10 +54,9 @@ function playRound(playerSelection, computerSelection)
         }
     }
 
-    else if (playerSelection == "paper")
+    else if (playerSelection == "Paper")
     {
-        playerChoice.src = "img/paper.webp";
-        if (computerSelection == "rock")
+        if (computerSelection == "Rock")
         {
             return true;
         }
@@ -67,13 +65,14 @@ function playRound(playerSelection, computerSelection)
             return false;
         }
     }
-    playerScore.appendChild(playerChoice);
-    computerScore.appendChild(computerChoice);
+
 }
 
 let winCount = 0;
 let compWinCount = 0;
-const body =document.querySelector("body");
+
+
+const body = document.querySelector("body");
 const gameContainer = document.querySelector(".gameContainer");
 
 const playerScore = document.getElementById("playerScore");
@@ -91,6 +90,10 @@ const btnCont = document.querySelector(".btnCont");
 const choices = document.querySelectorAll(".choice");
 const endMessage = document.querySelector(".end");
 
+const playerChoice = document.getElementById("playerChoice")
+const computerChoice = document.getElementById("computerChoice");
+const gameResult = document.getElementById("gameResult");
+
 
 const playAgain = document.createElement("button");
 playAgain.textContent = "Play Again?";
@@ -102,7 +105,9 @@ playAgain.addEventListener("click", () => {
     playAgain.remove();
     result.remove();
     resultGif.remove();
-    endMessage.remove();
+    endMessage.removeChild(resultGif);
+    endMessage.removeChild(result);
+    endMessage.removeChild(playAgain);
     player.textContent = winCount;
     computer.textContent = compWinCount;
 
@@ -133,11 +138,13 @@ function keepScore(playerWins){
             {
                 winCount++;
                 player.textContent = winCount;
+                gameResult.textContent = "You win!";
             }
             else if (playerWins != null)
             {
                 compWinCount++;
                 computer.textContent = compWinCount;
+                gameResult.textContent = "You lose."
             }
 }
 
