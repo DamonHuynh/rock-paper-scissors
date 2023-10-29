@@ -67,7 +67,7 @@ function playRound(playerSelection, computerSelection)
 let winCount = 0;
 let compWinCount = 0;
 
-const container = document.querySelector(".container");
+const gameContainer = document.querySelector(".game-container");
 
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
@@ -142,18 +142,18 @@ function endGame(){
     });
     if (winCount > compWinCount){
         result.textContent = "YOU WIN!!";
-        container.appendChild(result);
+        gameContainer.appendChild(result);
 
         resultGif.src = "img/winner.gif";
-        container.append(resultGif);
+        gameContainer.append(resultGif);
 
     }
     else {
         result.textContent = "YOU SUCK!!";
-        container.appendChild(result);
+        gameContainer.appendChild(result);
 
         resultGif.src = "img/loser.gif";
-        container.append(resultGif);
+        gameContainer.append(resultGif);
 
     }
     endMessage.appendChild(playAgain);

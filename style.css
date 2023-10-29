@@ -1,4 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300&display=swap');
+
 body{
+    background-color: #2F343A;
+}
+.header{
+    text-align: center;
+    background-color: #DDDDDD;
+    padding: 30px;
+    margin: 0;
+    font-size: 50px;
+    font-family: Agbalumo;
+    border-radius: 20px;
 }
 
 .btnCont{
