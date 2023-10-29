@@ -44,7 +44,7 @@ function playRound(playerSelection, computerSelection)
 
     else if (playerSelection == "Scissors")
     {
-        if (computerSelection == "Raper")
+        if (computerSelection == "Paper")
         {
             return true;
         }
