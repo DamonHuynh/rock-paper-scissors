@@ -29,13 +29,11 @@ function playRound(playerSelection, computerSelection)
     {
         if (computerSelection == "scissors")
         {
-             console.log("You win, rock beats scissors");
              return true;
         }
         //if computer choice is not scissors, it must be paper
         else
         {
-            console.log("You lose, rock loses to paper");
             return false;
         }
     }
@@ -44,12 +42,10 @@ function playRound(playerSelection, computerSelection)
     {
         if (computerSelection == "paper")
         {
-            console.log("You win, scissors beats paper");
             return true;
         }
         else
         {
-            console.log("You lose, scissors loses to rock");
             return false;
         }
     }
@@ -58,12 +54,10 @@ function playRound(playerSelection, computerSelection)
     {
         if (computerSelection == "rock")
         {
-            console.log("You win, paper beats rock");
             return true;
         }
         else
         {
-            console.log( "You lose, paper loses to scissors");
             return false;
         }
     }
@@ -77,6 +71,9 @@ const container = document.querySelector(".container");
 
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
+const player = document.querySelector(".player");
+const computer = document.querySelector(".computer");
+
 const result = document.createElement("p");
 const resultGif = document.createElement("img");
 resultGif.classList.add("gif")
@@ -93,13 +90,15 @@ playAgain.textContent = "Play Again?";
 playAgain.addEventListener("click", () => {
     winCount = 0;
     compWinCount = 0;
-    changeScore();
     choices.forEach((button) => {
         btnCont.appendChild(button);
     });
     playAgain.remove();
     result.remove();
     resultGif.remove();
+    player.textContent = winCount;
+    computer.textContent = compWinCount;
+
 });
 
 
@@ -114,6 +113,7 @@ function game()
             keepScore(playerWins)
             if (winCount == 5 || compWinCount == 5){
                 endGame();
+
             }
  
         });
@@ -125,18 +125,16 @@ function keepScore(playerWins){
     if (playerWins)
             {
                 winCount++;
+                player.textContent = winCount;
             }
             else if (playerWins != null)
             {
                 compWinCount++;
+                computer.textContent = compWinCount;
             }
-            changeScore();
 }
 
-function changeScore(){
-    playerScore.textContent = "You: " + winCount;
-    computerScore.textContent = "Computer: " + compWinCount
-}
+
 
 function endGame(){
     choices.forEach((button) => {
@@ -148,6 +146,7 @@ function endGame(){
 
         resultGif.src = "img/winner.gif";
         container.append(resultGif);
+
     }
     else {
         result.textContent = "YOU SUCK!!";
