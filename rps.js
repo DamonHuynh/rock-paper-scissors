@@ -66,8 +66,8 @@ function playRound(playerSelection, computerSelection)
 
 let winCount = 0;
 let compWinCount = 0;
-
-const gameContainer = document.querySelector(".game-container");
+const body =document.querySelector("body");
+const gameContainer = document.querySelector(".gameContainer");
 
 const playerScore = document.getElementById("playerScore");
 const computerScore = document.getElementById("computerScore");
@@ -75,6 +75,7 @@ const player = document.querySelector(".player");
 const computer = document.querySelector(".computer");
 
 const result = document.createElement("p");
+result.classList.add("result")
 const resultGif = document.createElement("img");
 resultGif.classList.add("gif")
 
@@ -90,12 +91,11 @@ playAgain.textContent = "Play Again?";
 playAgain.addEventListener("click", () => {
     winCount = 0;
     compWinCount = 0;
-    choices.forEach((button) => {
-        btnCont.appendChild(button);
-    });
+    body.appendChild(gameContainer);
     playAgain.remove();
     result.remove();
     resultGif.remove();
+    endMessage.remove();
     player.textContent = winCount;
     computer.textContent = compWinCount;
 
@@ -137,23 +137,22 @@ function keepScore(playerWins){
 
 
 function endGame(){
-    choices.forEach((button) => {
-        btnCont.removeChild(button);
-    });
+
+    gameContainer.remove();
     if (winCount > compWinCount){
         result.textContent = "YOU WIN!!";
-        gameContainer.appendChild(result);
+        endMessage.appendChild(result);
 
         resultGif.src = "img/winner.gif";
-        gameContainer.append(resultGif);
+        endMessage.append(resultGif);
 
     }
     else {
-        result.textContent = "YOU SUCK!!";
-        gameContainer.appendChild(result);
+        result.textContent = "YOU LOSE!!";
+        endMessage.appendChild(result);
 
         resultGif.src = "img/loser.gif";
-        gameContainer.append(resultGif);
+        endMessage.append(resultGif);
 
     }
     endMessage.appendChild(playAgain);
