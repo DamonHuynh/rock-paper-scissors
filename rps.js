@@ -72,6 +72,10 @@ function playRound(playerSelection, computerSelection)
 
 let winCount = 0;
 let compWinCount = 0;
+
+const playerScore = document.getElementById("playerScore");
+const computerScore = document.getElementById("computerScore");
+
 const btnCont = document.querySelector(".btnCont");
 const choices = document.querySelectorAll(".choice");
 const endMessage = document.querySelector(".end");
@@ -80,6 +84,7 @@ const playAgain = document.createElement("button");
 playAgain.addEventListener("click", () => {
     winCount = 0;
     compWinCount = 0;
+    changeScore();
     choices.forEach((button) => {
         btnCont.appendChild(button);
     });
@@ -114,9 +119,12 @@ function keepScore(playerWins){
             {
                 compWinCount++;
             }
-            console.log("Player has: " + winCount);
-            console.log("Computer has: " + compWinCount);
+            changeScore();
+}
 
+function changeScore(){
+    playerScore.textContent = "You: " + winCount;
+    computerScore.textContent = "Computer: " + compWinCount
 }
 
 function endGame(){
