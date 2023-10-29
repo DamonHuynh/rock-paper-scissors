@@ -1,3 +1,5 @@
+const playerChoice = document.createElement("img");
+const computerChoice = document.createElement("img");
 
 function getComputerChoice()
 {
@@ -18,7 +20,6 @@ function getComputerChoice()
 
 function playRound(playerSelection, computerSelection)
 {
-
     if (playerSelection === computerSelection)
     {
         console.log("It's a tie!");
@@ -27,6 +28,8 @@ function playRound(playerSelection, computerSelection)
 
     if (playerSelection == "rock")
     {
+        playerChoice.src = "img/rock.png";
+
         if (computerSelection == "scissors")
         {
              return true;
@@ -40,6 +43,8 @@ function playRound(playerSelection, computerSelection)
 
     else if (playerSelection == "scissors")
     {
+        playerChoice.src = "img/scissors.png";
+
         if (computerSelection == "paper")
         {
             return true;
@@ -52,6 +57,7 @@ function playRound(playerSelection, computerSelection)
 
     else if (playerSelection == "paper")
     {
+        playerChoice.src = "img/paper.webp";
         if (computerSelection == "rock")
         {
             return true;
@@ -61,7 +67,8 @@ function playRound(playerSelection, computerSelection)
             return false;
         }
     }
-
+    playerScore.appendChild(playerChoice);
+    computerScore.appendChild(computerChoice);
 }
 
 let winCount = 0;
