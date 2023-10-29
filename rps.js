@@ -105,9 +105,7 @@ playAgain.addEventListener("click", () => {
     playAgain.remove();
     result.remove();
     resultGif.remove();
-    endMessage.removeChild(resultGif);
-    endMessage.removeChild(result);
-    endMessage.removeChild(playAgain);
+    endMessage.remove();
     player.textContent = winCount;
     computer.textContent = compWinCount;
 
@@ -151,24 +149,20 @@ function keepScore(playerWins){
 
 
 function endGame(){
-
+    body.appendChild(endMessage);
     gameContainer.remove();
     if (winCount > compWinCount){
         result.textContent = "YOU WIN!!";
-        endMessage.appendChild(result);
-
         resultGif.src = "img/winner.gif";
-        endMessage.append(resultGif);
-
     }
     else {
         result.textContent = "YOU LOSE!!";
-        endMessage.appendChild(result);
-
         resultGif.src = "img/loser.gif";
-        endMessage.append(resultGif);
+        
 
     }
+    endMessage.appendChild(result);
+    endMessage.append(resultGif);
     endMessage.appendChild(playAgain);
     
     }
